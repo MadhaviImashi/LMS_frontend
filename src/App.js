@@ -1,5 +1,8 @@
-//import the styled-components
+//import the styled-components package
 import styled from "styled-components/";
+//import the layout components
+import {Header, Main, Footer} from "./components/Layout";
+
 
 //create a Title component that'll render an <h1> tag with some styles
 const Title = styled.h1`
@@ -15,9 +18,16 @@ const Wrapper = styled.section`
 
 function App() {
   return (
-    <Wrapper>
-      <Title> Hi, Welcome</Title>
-    </Wrapper>
+    <>
+      <Header>This is the header</Header>
+      <Main>
+        This is the main section
+        <Wrapper>
+          <Title> Hi, Welcome</Title>
+        </Wrapper>
+      </Main>
+      <Footer>This is the footer</Footer>
+    </>
   );
 }
 
