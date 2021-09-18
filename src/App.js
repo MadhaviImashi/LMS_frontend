@@ -2,6 +2,7 @@
 import styled from "styled-components/";
 //import the layout components
 import {Header, Main, Footer} from "./components/Layout";
+import {NavBar, NavItem, NavLink} from "./components/Navbar";
 
 
 //create a Title component that'll render an <h1> tag with some styles
@@ -19,7 +20,16 @@ const Wrapper = styled.section`
 function App() {
   return (
     <>
-      <Header>This is the header</Header>
+      <Header>
+        <NavBar>
+          <NavItem href="#">
+            <NavLink>Catalog</NavLink>
+          </NavItem>
+          <NavItem href="#">
+            <NavLink>Dashboard</NavLink>
+          </NavItem>
+        </NavBar>
+      </Header>
       <Main>
         This is the main section
         <Wrapper>
