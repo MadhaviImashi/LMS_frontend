@@ -39,30 +39,29 @@ function App() {
   return (
     <>
       {/* pass the themeObj to the ThemeProvider prop which is 'theme' */}
-      <ThemeProvider theme={themeObj}> 
-            <NavBar>
-              <NavItem href="#">
-                <NavLink>
-                  <BsBookHalf/>
-                </NavLink>
-              </NavItem>
-              <NavItem href="#">
-                <NavLink>Catalog</NavLink>
-              </NavItem>
-              <NavItem href="#">
-                <NavLink>Dashboard</NavLink>
-              </NavItem>
-            </NavBar>
+      <ThemeProvider theme={themeObj}>
+        <NavBar>
+          <NavItem href="#">
+            <NavLink>
+              <BsBookHalf />
+            </NavLink>
+          </NavItem>
+          <NavItem href="#">
+            <NavLink>Catalog</NavLink>
+          </NavItem>
+          <NavItem href="#">
+            <NavLink>Dashboard</NavLink>
+          </NavItem>
+        </NavBar>
 
-          <Main>
-            This is the main section
-            <Wrapper>
-              <Title> Hi, Welcome</Title>
-            </Wrapper>
-          </Main>
-          <Footer>This is the footer</Footer>
+        <Main>
+          This is the main section
+          <Wrapper>
+            <Title> Hi, Welcome</Title>
+          </Wrapper>
+        </Main>
+        <Footer>This is the footer</Footer>
       </ThemeProvider>
-
     </>
   );
 }
