@@ -1,5 +1,7 @@
 //import the styled-components package
 import styled from "styled-components/";
+//import themeprovider
+import {ThemeProvider} from "styled-components";//this component injects the theme into all styled components via the context API
 //import the layout components
 import {Header, Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
@@ -18,25 +20,42 @@ const Wrapper = styled.section`
 `;
 
 function App() {
+
+  const themeObj = {
+     primary: {
+       main: "#29b6f6",
+       light: "#73e8ff",
+       dark: "#0086c3",
+       textColor: "#000",
+     },
+     secondary: {
+       main: "#fff",
+     }
+  };
+
   return (
     <>
-      <Header>
-        <NavBar>
-          <NavItem href="#">
-            <NavLink>Catalog</NavLink>
-          </NavItem>
-          <NavItem href="#">
-            <NavLink>Dashboard</NavLink>
-          </NavItem>
-        </NavBar>
-      </Header>
-      <Main>
-        This is the main section
-        <Wrapper>
-          <Title> Hi, Welcome</Title>
-        </Wrapper>
-      </Main>
-      <Footer>This is the footer</Footer>
+      {/* pass the themeObj to the ThemeProvider prop which is 'theme' */}
+      <ThemeProvider theme={themeObj}> 
+          <Header>
+            <NavBar>
+              <NavItem href="#">
+                <NavLink>Catalog</NavLink>
+              </NavItem>
+              <NavItem href="#">
+                <NavLink>Dashboard</NavLink>
+              </NavItem>
+            </NavBar>
+          </Header>
+          <Main>
+            This is the main section
+            <Wrapper>
+              <Title> Hi, Welcome</Title>
+            </Wrapper>
+          </Main>
+          <Footer>This is the footer</Footer>
+      </ThemeProvider>
+
     </>
   );
 }
