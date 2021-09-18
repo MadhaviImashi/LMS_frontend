@@ -2,6 +2,9 @@
 import styled from "styled-components/";
 //import themeprovider
 import {ThemeProvider} from "styled-components";//this component injects the theme into all styled components via the context API
+//import react-icons package
+import {BsBookHalf} from "react-icons/bs";
+
 //import the layout components
 import {Header, Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
@@ -39,6 +42,11 @@ function App() {
       <ThemeProvider theme={themeObj}> 
           <Header>
             <NavBar>
+              <NavItem href="#">
+                <NavLink>
+                  <BsBookHalf/>
+                </NavLink>
+              </NavItem>
               <NavItem href="#">
                 <NavLink>Catalog</NavLink>
               </NavItem>
