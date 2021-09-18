@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-export const Header = styled.header`
-    height: 5vh; 
-`;
 //vh = view height. so 5vh means, that component will be given 5% height from the website view
 
 export const Main = styled.main`
-    height: 95vh;
+    min-height: 95vh;
+    padding: 2.5vh;
 `;
 
 export const Footer = styled.footer`

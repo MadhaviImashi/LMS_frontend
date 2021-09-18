@@ -6,7 +6,7 @@ import {ThemeProvider} from "styled-components";//this component injects the the
 import {BsBookHalf} from "react-icons/bs";
 
 //import the layout components
-import {Header, Main, Footer} from "./components/Layout";
+import {Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
 
 
@@ -40,7 +40,6 @@ function App() {
     <>
       {/* pass the themeObj to the ThemeProvider prop which is 'theme' */}
       <ThemeProvider theme={themeObj}> 
-          <Header>
             <NavBar>
               <NavItem href="#">
                 <NavLink>
@@ -54,7 +53,7 @@ function App() {
                 <NavLink>Dashboard</NavLink>
               </NavItem>
             </NavBar>
-          </Header>
+
           <Main>
             This is the main section
             <Wrapper>
