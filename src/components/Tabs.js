@@ -37,3 +37,4 @@ export const Content = styled.div`
     #{(props) => (props.active ? "" : "display: none")}
 `;
 //display: none will not display anything if the component state is not active*
+//only the content of the active tab will be displayed

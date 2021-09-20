@@ -1,5 +1,5 @@
 //import the styled-components package
-import styled from "styled-components/";
+//import styled from "styled-components/";
 //import themeprovider
 import {ThemeProvider} from "styled-components";//this component injects the theme into all styled components via the context API
 //import react-icons package
@@ -8,19 +8,20 @@ import {BsBookHalf} from "react-icons/bs";
 //import the layout components
 import {Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
+import Dashboard from "./containers/Dashboard";
 
 
 //create a Title component that'll render an <h1> tag with some styles
-const Title = styled.h1`
-  font-size: 3em;
-  text-align: center;
-  color: palevioletred;
-`;
+// const Title = styled.h1`
+//   font-size: 3em;
+//   text-align: center;
+//   color: palevioletred;
+// `;
 
-const Wrapper = styled.section`
-  pading: 4em;
-  background: papayawhip;
-`;
+// const Wrapper = styled.section`
+//   pading: 4em;
+//   background: papayawhip;
+// `;
 
 function App() {
 
@@ -56,9 +57,10 @@ function App() {
 
         <Main>
           This is the main section
-          <Wrapper>
-            <Title> Hi, Welcome</Title>
-          </Wrapper>
+          {/* <Wrapper> */}
+            {/* <Title> Hi, Welcome</Title> */}
+            <Dashboard></Dashboard>
+          {/* </Wrapper> */}
         </Main>
         <Footer>This is the footer</Footer>
       </ThemeProvider>
