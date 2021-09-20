@@ -23,11 +23,11 @@ const Dashboard = () => {
             <Tab id={1} onClick={handleTabClick} active={active === 1}>content 2</Tab>
 
             <TabContent>
-                <Content active={active === 1}>
-                    <h2>content of tab 1 comes here</h2>
-                </Content>
                 <Content active={active === 0}>
                     <h2>content of tab 1 comes here</h2>
+                </Content>
+                <Content active={active === 1}>
+                    <h2>content of tab 2 comes here</h2>
                 </Content>
             </TabContent>
             
@@ -35,4 +35,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard
+export default Dashboard;

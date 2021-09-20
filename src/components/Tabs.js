@@ -16,7 +16,9 @@ export const Tab = styled.button`
     font-size: 1em;
     border: ${(props) => (props.active ? "" : "1px solid #ccc")};
     border-bottom: none;
-    background-color: ${(props) => (props.active ? "#fff": "#000")};
+    background-color: ${(props) => (props.active ? "#039be5" : "#fff")};
+    height: 3em;
+    color: ${(props) => (props.active ? "#fff": "#000")};
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
     :hover{
@@ -34,7 +36,7 @@ export const TabContent = styled.div`
 `;
 
 export const Content = styled.div`
-    #{(props) => (props.active ? "" : "display: none")}
+    ${(props) => (props.active ? "" : "display: none")}
 `;
 //display: none will not display anything if the component state is not active*
 //only the content of the active tab will be displayed

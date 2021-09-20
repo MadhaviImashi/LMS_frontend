@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBar = styled.ul`
-    list-style: none;
+    list-style-type: none;
     margin: 0;
     padding: 1em 0;
     overflow: hidden;
@@ -19,6 +19,7 @@ export const NavLink = styled.a`
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-size: 1.25em;
 
     :hover{
         background-color: ${(props) => props.theme.primary.light};
