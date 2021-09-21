@@ -3,10 +3,14 @@ import styled from 'styled-components';
 export const NavBar = styled.ul`
     list-style-type: none;
     margin: 0;
-    padding: 1em 0;
+    padding: ${(props) => props.theme.spacing(1)} 0;
     overflow: hidden;
     background-color: ${(props) => props.theme.primary.main};
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    max-height: 5vh;
 `;
 //instead of hard coding the colors everywhere, now u can use those defined colors in our theme obj in the App.js class using 'theme' prop
 //we can embed javascript codes using ${} inside these Template literals which encloses with backticks

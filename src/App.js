@@ -6,7 +6,7 @@ import {ThemeProvider} from "styled-components";//this component injects the the
 import {BsBookHalf} from "react-icons/bs";
 
 //import the layout components
-import {Main, Footer} from "./components/Layout";
+import {Header, Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
 import Dashboard from "./containers/Dashboard";
 
@@ -34,29 +34,31 @@ function App() {
      },
      secondary: {
        main: "#fff",
-     }
+     },
+     spacing: (factor) => `${factor * 8}px`, //this function has a factor parameter. (spacing attribute value will be equal to factor*8 px)
   };
 
   return (
     <>
       {/* pass the themeObj to the ThemeProvider prop which is 'theme' */}
       <ThemeProvider theme={themeObj}>
-        <NavBar>
-          <NavItem href="#">
-            <NavLink>
-              <BsBookHalf />
-            </NavLink>
-          </NavItem>
-          <NavItem href="#">
-            <NavLink>Catalog</NavLink>
-          </NavItem>
-          <NavItem href="#">
-            <NavLink>Dashboard</NavLink>
-          </NavItem>
-        </NavBar>
+        <Header>
+          <NavBar>
+            <NavItem href="#">
+              <NavLink>
+                <BsBookHalf />
+              </NavLink>
+            </NavItem>
+            <NavItem href="#">
+              <NavLink>Catalog</NavLink>
+            </NavItem>
+            <NavItem href="#">
+              <NavLink>Dashboard</NavLink>
+            </NavItem>
+          </NavBar>
+        </Header>
 
         <Main>
-          This is the main section
           {/* <Wrapper> */}
             {/* <Title> Hi, Welcome</Title> */}
             <Dashboard></Dashboard>
