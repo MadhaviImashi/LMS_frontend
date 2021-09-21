@@ -62,7 +62,10 @@ function App() {
             <Dashboard></Dashboard>
           {/* </Wrapper> */}
         </Main>
-        <Footer>This is the footer</Footer>
+
+        <Footer>
+          Copyright date @ Spark Academy
+        </Footer>
       </ThemeProvider>
     </>
   );

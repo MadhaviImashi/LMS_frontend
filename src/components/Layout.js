@@ -10,5 +10,7 @@ export const Main = styled.main`
 export const Footer = styled.footer`
     display: flex;
     ustify-content: center;
+    padding: 1em;
+    border-top: 1px solid #ccc;
 `;
 
