@@ -1,5 +1,5 @@
-//import the styled-components package
 //import styled from "styled-components/";
+
 import React from "react";
 import { Suspense } from "react";
 //import themeprovider
