@@ -13,6 +13,7 @@ import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //import the layout components
 import {Header, Main, Footer} from "./components/Layout";
 import {NavBar, NavItem, NavLink} from "./components/Navbar";
+// import { DASHBOARD } from "./shared/routes";
 import Spinner from "./components/Spinner";
 //import the Routes that we created in the shared file
 import { DASHBOARD, CATALOG } from "./shared/routes";
@@ -20,6 +21,11 @@ import { DASHBOARD, CATALOG } from "./shared/routes";
 //enable Lazy Loading feature in React to import Dashboard component(then it will load this only when needed i think. not sure)
 const Dashboard = React.lazy(() => {
   return import("./containers/Dashboard");
+});
+
+//load the NotFound page also lazy as a good practice
+const NotFoundPage = React.lazy(() => {
+  return import ("./containers/404");
 });
 
 //create a Title component that'll render an <h1> tag with some styles
@@ -44,6 +50,7 @@ function App() {
               <Route path={DASHBOARD}><Dashboard/></Route>
               <Route exact path={CATALOG} component={Spinner}/>
               {/* if an unknown/wrong path is loaded, below component will be rendered */}
+              <Route component = {NotFoundPage}/>
         </Switch>
     </Suspense>
 
@@ -82,7 +89,7 @@ function App() {
 
         <Main>
             {/* <Dashboard></Dashboard> */}
-            {/* call the Router component to enable 'switchRoutes' component that we created */}
+            {/* use the Router component to enable 'switchRoutes' component that we created */}
             <Router>
               {switchRoutes} {/*this will render the correct component which matches to the Route/path*/}
             </Router>

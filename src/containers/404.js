@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { DASHBOARD } from "./shared/routes";
+import { DASHBOARD } from "../shared/routes";
+// import Dashboard from "./containers/Dashboard";
 
 const FlluidContainer = styled.div`
     display: flex;
