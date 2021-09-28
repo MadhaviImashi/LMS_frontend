@@ -43,6 +43,7 @@ function App() {
               {/* <Route path="/about"><Dashboard/></Route> */}
               <Route path={DASHBOARD}><Dashboard/></Route>
               <Route exact path={CATALOG} component={Spinner}/>
+              {/* if an unknown/wrong path is loaded, below component will be rendered */}
         </Switch>
     </Suspense>
 
