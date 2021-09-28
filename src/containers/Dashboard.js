@@ -5,7 +5,7 @@
 //The tabs components will be used here
 import Tabs from "../components/Tabs";
 
-const Dashboard = () => {
+const Dashboard = () => { //why we create Dashboard as an arrow function??
 
     // const[active, setActive] = useState(0); //define a state called 'active' to use react-hook
 
@@ -36,7 +36,7 @@ const Dashboard = () => {
         //         </Content>
         //     </TabContent>
         // </Tabs>
-        <Tabs tabContents={tabContents} />
+        <Tabs tabContentsProp={tabContents} />
     );
 };
 

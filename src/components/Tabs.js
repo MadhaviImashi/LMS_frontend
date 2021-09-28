@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-export const TabsContainer = styled.div`
+//A container which holds the full Tab component
+const TabsContainer = styled.div`
     overflow: hidden;
     background: #fff;
     height: 100%;
@@ -10,7 +11,7 @@ export const TabsContainer = styled.div`
 `;
 //overflow: hidden - to show the content of the selected tab only(rest of the content will be hidden)
 
-export const TabButtonContainer = styled.div`
+const TabButtonContainer = styled.div`
     display: flex;
 
     > * {
@@ -19,7 +20,8 @@ export const TabButtonContainer = styled.div`
     }
 `;
 
-export const Tab = styled.button`
+//Tab (Tab buttons)
+const Tab = styled.button`
     border: none;
     outline: none;
     cursor: pointer;
@@ -38,7 +40,7 @@ export const Tab = styled.button`
     }
 `;
 
-export const TabContents = styled.div`
+const TabContents = styled.div`
     border: 0.25em solid ${(props) => props.theme.primary.main};
     border-top: 0.5em solid ${(props) => props.theme.primary.main};
     border-top-right-radius: 1em;
@@ -47,7 +49,7 @@ export const TabContents = styled.div`
     min-height: 80vh;
 `;
 
-export const Content = styled.div`
+const Content = styled.div`
     ${(props) => (props.active ? "" : "display: none")}
 `;
 //display: none will not display anything if the component state is not active*
@@ -55,13 +57,13 @@ export const Content = styled.div`
 
 //now create the main Tabs component to be used in the Dashboard 
 export default function Tabs(props){
-    const {tabContents} = props;  //array destructuring
+    const {tabContentsProp} = props;  //assign the prop values coming from the dashboard( array destructuring )
 
-    const[active, setActive] = useState(0); //define a state called 'active' to use react-hook
+    const[activeTab, setActive] = useState(0); //define a state called 'active' to use react-hook
 
     const handleTabClick = (event) => {
         const tabIndex = parseInt(event.target.id);
-        if(tabIndex !== active){ //check whether the index(id) of the clicked tab is equal to the value of 'active'
+        if(tabIndex !== activeTab){ //check whether the index(id) of the clicked tab is equal to the value of 'active'
             setActive(tabIndex);//if the activated content(active value) is not equal to clicked tab index, change the active value to index no.
             //then this setActive() will change the value of 'active' accordingly. then the content will be changed according to the clicked tab
         }
@@ -70,15 +72,16 @@ export default function Tabs(props){
     return(
         <TabsContainer>
             <TabButtonContainer>
-                    {tabContents.map((content, index)=>(
-                        <Tab onClick={handleTabClick} active={active === index} id={index}>
-                            {content.title}
+                    {tabContentsProp.map((content, index)=>(
+                        <Tab onClick={handleTabClick} active={activeTab === index} id={index}>
+                            {content.title} 
                         </Tab>
                     ))}
             </TabButtonContainer>
+            
             <TabContents>
-                    {tabContents.map((content, index)=>(
-                        <Content active={active === index}>
+                    {tabContentsProp.map((content, index)=>(
+                        <Content active={activeTab === index}>
                             {content.elements}
                         </Content>
                     ))}
