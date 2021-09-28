@@ -16,7 +16,7 @@ import {NavBar, NavItem, NavLink} from "./components/Navbar";
 // import { DASHBOARD } from "./shared/routes";
 import Spinner from "./components/Spinner";
 //import the Routes that we created in the shared file
-import { DASHBOARD, CATALOG } from "./shared/routes";
+import { ROOT, DASHBOARD, CATALOG } from "./shared/routes";
 
 //enable Lazy Loading feature in React to import Dashboard component(then it will load this only when needed i think. not sure)
 const Dashboard = React.lazy(() => {
@@ -46,6 +46,7 @@ function App() {
   let switchRoutes = (
     <Suspense fallback = {<Spinner/>}> {/* using Suspense, create a fallback component onbehalf of Dashboard component(so this fallback component will be displayed until the lazy component get downloaded)*/}
         <Switch>
+              <Route path={ROOT}><Dashboard/></Route>
               {/* <Route path="/about"><Dashboard/></Route> */}
               <Route path={DASHBOARD}><Dashboard/></Route>
               <Route exact path={CATALOG} component={Spinner}/>
