@@ -36,7 +36,9 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
         //         </Content>
         //     </TabContent>
         // </Tabs>
-        <Tabs tabContentsProp={tabContents} />
+        <>
+            <Tabs tabContentsProp={tabContents} />
+        </>
     );
 };
 
