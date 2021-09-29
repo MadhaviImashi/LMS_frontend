@@ -11,6 +11,7 @@ import { getBooks } from "../../api/bookAPI";
 //The tabs components will be used here
 import Tabs from "../../components/Tabs";
 import Spinner from "../../components/Spinner";
+import { Books } from "./Books";
 
 const Dashboard = () => { //why we create Dashboard as an arrow function??
 
@@ -25,6 +26,8 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
 
     //give a state to this component before useEffect will run (use to show some msg to the user during an api call execution to inform that data is still loading)
     const [isLoading, setIsLoading] = useState(false);
+    //we can store the response data of get api call to this 'books' state object
+    const [books, setBooks] = useState([]);
 
     useEffect(()=>{
         setIsLoading(true);
@@ -34,6 +37,7 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
             .then((response)=>{
                 if(!response.error){
                     console.log(response.data);
+                    setBooks(response.data);
                 }
             })
             //execute if promise has catched an error
@@ -48,7 +52,7 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
 
     //create a tab content component with all the content data in objects
     const tabContents = [
-        {title: "Books", elements: <h1>Contents of books go here</h1>},
+        {title: "Books", elements: <Books booksCatalog ={books}/>}, //call Books component, send books data as a prop to the Books component
         {title: "Members", elements: <h1>Contents of members go here</h1>},
     ]
     
