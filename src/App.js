@@ -46,9 +46,9 @@ function App() {
   let switchRoutes = (
     <Suspense fallback = {<Spinner/>}> {/* using Suspense, create a fallback component onbehalf of Dashboard component(so this fallback component will be displayed until the lazy component get downloaded)*/}
         <Switch>
-              <Route path={ROOT}><Dashboard/></Route>
+              <Route exact path={ROOT}><Dashboard/></Route>
               {/* <Route path="/about"><Dashboard/></Route> */}
-              <Route path={DASHBOARD}><Dashboard/></Route>
+              <Route exact path={DASHBOARD}><Dashboard/></Route>
               <Route exact path={CATALOG} component={Spinner}/>
               {/* if an unknown/wrong path is loaded, below component will be rendered */}
               <Route component = {NotFoundPage}/>

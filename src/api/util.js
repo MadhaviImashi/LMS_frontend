@@ -8,6 +8,7 @@ export const getRequest = async (uri) => {
     try {
         let response = await axios.get(uri);
 
+        //hence axios are PROMISE based, always a promise will be returned when axios based functions are called
         return {
             data: response.data,
             error: null
