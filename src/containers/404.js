@@ -2,12 +2,7 @@ import styled from "styled-components";
 import { DASHBOARD } from "../shared/routes";
 // import Dashboard from "./containers/Dashboard";
 
-const FlluidContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
+import { FluidContainer } from "../components/CommonComponents";
 
 const Title = styled.h1`
     font-size: 2.5em;
@@ -20,14 +15,14 @@ const Subtitle = styled.h6`
 `;
 
 const NotFoundPage = () => (
-    <FlluidContainer>
+    <FluidContainer>
         <Title>
             404!
         </Title>
         <br/>
         <Subtitle>The page you're looking for doesn't exist.</Subtitle>
         <br/><a href={DASHBOARD}><span>Go to Dashboard</span></a>
-    </FlluidContainer>
+    </FluidContainer>
 );
 
 export default NotFoundPage;
