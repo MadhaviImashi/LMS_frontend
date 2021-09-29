@@ -20,7 +20,7 @@ import { ROOT, DASHBOARD, CATALOG } from "./shared/routes";
 
 //enable Lazy Loading feature in React to import Dashboard component(then it will load this only when needed i think. not sure)
 const Dashboard = React.lazy(() => {
-  return import("./containers/Dashboard");
+  return import("./containers/Dashboard/d_index");
 });
 
 //load the NotFound page also lazy as a good practice

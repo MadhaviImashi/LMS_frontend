@@ -6,11 +6,11 @@
 import React, { useEffect , useState} from "react";
 
 //import api calls defined by us
-import { getBooks } from "../api/bookAPI";
+import { getBooks } from "../../api/bookAPI";
 
 //The tabs components will be used here
-import Tabs from "../components/Tabs";
-import Spinner from "../components/Spinner";
+import Tabs from "../../components/Tabs";
+import Spinner from "../../components/Spinner";
 
 const Dashboard = () => { //why we create Dashboard as an arrow function??
 
