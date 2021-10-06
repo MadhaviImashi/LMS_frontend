@@ -7,11 +7,13 @@ import React, { useEffect , useState} from "react";
 
 //import api calls defined by us
 import { getBooks } from "../../api/bookAPI";
+import { getMembers } from "../../api/memberAPI";
 
 //The tabs components will be used here
 import Tabs from "../../components/Tabs";
 import Spinner from "../../components/Spinner";
 import { Books } from "./Books";
+import { Members } from "./Members";
 
 const Dashboard = () => { //why we create Dashboard as an arrow function??
 
@@ -28,6 +30,7 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
     const [isLoading, setIsLoading] = useState(false);
     //we can store the response data of get api call to this 'books' state object
     const [books, setBooks] = useState([]);
+    const [members, setMembers] = useState([]);
 
     useEffect(()=>{
         setIsLoading(true);
@@ -48,12 +51,29 @@ const Dashboard = () => { //why we create Dashboard as an arrow function??
             .finally(() => {
                 setIsLoading(false);
             })
+
+        getMembers()
+            //execute if axios promise is fullfilled
+            .then((response)=>{
+                if(!response.error){
+                    console.log(response.data);
+                    setMembers(response.data);
+                }
+            })
+            //execute if promise has catched an error
+            .catch((error)=>{
+                console.log(error);
+            })
+            //execute at the end of promise to close the sideEffect(cuz, data loading is completed at this point)
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, [])
 
     //create a tab content component with all the content data in objects
     const tabContents = [
         {title: "Books", elements: <Books booksCatalog ={books}/>}, //call Books component, send books data as a prop to the Books component
-        {title: "Members", elements: <h1>Contents of members go here</h1>},
+        {title: "Members", elements: <Members membersCatalog ={members}/>},
     ]
     
     return (
