@@ -52,7 +52,9 @@ const TableMarkup = ({attributes , data}) => (
 );
 
 //to export this TAbleMarckup structure as a table component
-const Table = ({data}) => <TableMarkup  attributes= {Object.keys(data[0])} data= {data} />
+const Table = ({data}) => (
+    data ? <TableMarkup  attributes= {Object.keys(data[0])} data= {data} /> : "No data to populate!"
+);
 //'data' is passed as a prop to this TableMarkup component
 //then, the keys set(set of attributes of the object) OF THE 1st element(data[0]) in the 'data' ARRAY passed by the backend
 //will be assigned to our 'attributes' variable 
