@@ -16,13 +16,18 @@ export const Books = ({booksCatalog}) => {
             title: "React Development in 2021",
         },
     ];
+
+    const handleTableRowClick = (id) => {
+        console.log(id);
+    }
+    
     return (
         <FluidContainer>
             {/* {booksCatalog[0] && booksCatalog[0].title 
                 ? booksCatalog[0].title
                 : "Still loading"} */}
 
-            <Table data={updatedBooksCatalog} />
+            <Table data={updatedBooksCatalog} handleRowClick={handleTableRowClick} instruction="Click row to view book"/>
 
         </FluidContainer>
     );
