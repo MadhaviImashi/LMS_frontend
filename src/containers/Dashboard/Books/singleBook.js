@@ -5,10 +5,11 @@ import {IoReturnUpBack} from "react-icons/io5";
 import { Button, Container, ContainerInline, FlexRow } from '../../../components/CommonComponents';
 import Spinner from '../../../components/Spinner';
 
-import { getBook } from '../../../api/bookAPI';
+import { getBook , lendBook} from '../../../api/bookAPI';
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
+import { getTodaysDate } from "../../../shared/uitility_functions";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -38,9 +39,9 @@ const Book = ({id, handleBackClick}) => {
         setShowDeleteConfirmation(false);//hide the modal anyway after confirmed or cancel the deletion
     };
 
-    const handleLend = (confirmed, member) => {
+    const handleLend = (confirmed, memberId) => {
         if(confirmed){
-            console.log("book lended to "+ member);
+            lendBook(book.id, memberId, getTodaysDate()); //call the lendBook API
         }
         setShowLendDialog(false);
     }
