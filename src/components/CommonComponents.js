@@ -33,7 +33,16 @@ export const FlexRow = styled.div`
 `;
 
 export const Button = styled.button`
-    background-color: ${(props) => props.danger ? props.theme.primary.danger : props.theme.primary.main};
+    background-color: ${(props) => {
+        switch (props.color) {
+            case "danger": 
+                return props.theme.primary.danger;
+            case "secondary":
+                return props.theme.secondary.main;
+            default: 
+                return props.theme.primary.main;
+        }
+    }};
     color: ${(props) => props.theme.primary.textColor};
     font-size: ${(props) => props.size ? props.size : 1.5}em;
     padding: 0.25em 1em;
@@ -43,6 +52,34 @@ export const Button = styled.button`
     margin: 1em;
 
     :hover { 
-        background-color: ${(props) => props.danger ? props.theme.primary.dangerDark : props.theme.primary.dark};
+        background-color: ${(props) => {
+            switch (props.color) {
+                case "danger":
+                    return props.theme.primary.dangerDark;
+                case "secondary": 
+                    return props.theme.secondary.dark;
+                default:
+                    return props.theme.primary.dark;
+            }
+        }};
+    }
+`;
+
+export const Select = styled.select`
+    height: 35px;
+    background: white;
+    color: gray;
+    ppadding: 0.5em;
+    font-size: 0.8em;
+    border: 2px solid ${(props) => props.theme.secondary.light};
+    border-radius: 0.5em;
+    margin-left: 1em;
+    option {
+        color: black;
+        background: white;
+        display: flex;
+        white-space: pre;
+        min-height: 20px;
+        padding: 0px 2px 1px;
     }
 `;

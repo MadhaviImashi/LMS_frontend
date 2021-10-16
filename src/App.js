@@ -69,6 +69,9 @@ function App() {
      },
      secondary: {
        main: "#fff",
+       light: "#cfcfcf",
+       dark: "#707070",
+       textColor: "#000",
      },
      spacing: (factor) => `${factor * 8}px`, //this function has a factor parameter. (spacing attribute value will be equal to factor*8 px)
   };
