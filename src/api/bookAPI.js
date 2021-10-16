@@ -14,3 +14,5 @@ export const lendBook = (id, burrowedMemberId, burrowedDate) => putRequest(`${BA
     burrowedMemberId, 
     burrowedDate});
 //parameters of request body is also mentioned inside {}
+
+export const returnBook = (id) => putRequest(`${BASE_URL}/${id}/return`);
