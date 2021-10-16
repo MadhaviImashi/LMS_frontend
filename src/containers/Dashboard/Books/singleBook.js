@@ -10,6 +10,7 @@ import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
 import { getTodaysDate } from "../../../shared/uitility_functions";
+import { getMember } from "../../../api/memberAPI";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -29,6 +30,7 @@ const Book = ({id, handleBackClick}) => {
     
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState(null);
+    const [member, setMember] = useState([]);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showLendDialog, setShowLendDialog] = useState(false);
     const [showReturnBookConfirmation, setShowReturnBookConfirmation] = useState(false);
@@ -62,6 +64,8 @@ const Book = ({id, handleBackClick}) => {
             .then((response) => {
                 if(!response.error) {
                     setBook(response.data);
+                    //call the getMember() to load the member details belongs to book burrowed member using book.burowedMemberId
+                    getMemberName(book.burrowedMemberId);
                 }
             })
             .catch((error)=>{
@@ -71,6 +75,16 @@ const Book = ({id, handleBackClick}) => {
                 setIsLoading(false);
             })
     }, [id]);
+
+    const getMemberName = (burrowedMemberId) =>{
+        getMember(burrowedMemberId)
+            .then((response)=>{
+                if(!response.error){
+                    console.log("member data", response.data);
+                    setMember(response.data);
+                }
+            })
+    };
 
     return (
         <>
@@ -97,8 +111,8 @@ const Book = ({id, handleBackClick}) => {
                                         ""
                                     ) : (
                                         <>
-                                            <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
-                                            <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
+                                            <h4>{`Borrowed by: ${member.Name} ( memberID: ${book.burrowedMemberId} )`}</h4>
+                                            <h4>{`Borrowed on: ${book.burrowedDate}`}</h4>
                                         </>
                                     )
                                 }
@@ -120,8 +134,6 @@ const Book = ({id, handleBackClick}) => {
                                     </>
                                 ) : (
                                     <>
-                                        <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
-                                        <h4>{`Burrowed on: ${book.burrowedDate}`}</h4>
                                         <Button onClick={()=>setShowReturnBookConfirmation(true)}> Return </Button>
                                     </>
                                 )
