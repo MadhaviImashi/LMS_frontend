@@ -7,6 +7,7 @@ import Spinner from '../../../components/Spinner';
 
 import { getBook } from '../../../api/bookAPI';
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
+import ConfirmationDialog from "../../../components/ConfirmationDialog";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -26,6 +27,14 @@ const Book = ({id, handleBackClick}) => {
     
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState(null);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
+    const handleDelete = (confirmation) => {
+        if(confirmation){
+            console.log("Delete confirmed");
+        }
+        setShowDeleteConfirmation(false);//hide the modal anyway after confirmed or cancel the deletion
+    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -44,65 +53,74 @@ const Book = ({id, handleBackClick}) => {
     }, [id]);
 
     return (
-        <Container>
-            <Button onClick={handleBackClick}> 
-                <IoReturnUpBack /> 
-            </Button>
+        <>
+            <Container>
+                <Button onClick={handleBackClick}> 
+                    <IoReturnUpBack /> 
+                </Button>
 
-            {!isLoading && book !== null ? (
-                <>
-                <FlexRow>
-                    <ContainerInlineTextAlignLeft>
-                        <H1>{book.title}</H1>
-                        <H2>{`By ${book.author}`}</H2>
-                        <p>
-                            Lorem ipsum dolr sit amet, consectetur adipisicing
-                            elit, sed do eiusomod tempor incideontk ut kaldbodkr et
-                            dorlore magna dlaldiqa.
-                        </p>
+                {!isLoading && book !== null ? (
+                        <>
+                        <FlexRow>
+                            <ContainerInlineTextAlignLeft>
+                                <H1>{book.title}</H1>
+                                <H2>{`By ${book.author}`}</H2>
+                                <p>
+                                    Lorem ipsum dolr sit amet, consectetur adipisicing
+                                    elit, sed do eiusomod tempor incideontk ut kaldbodkr et
+                                    dorlore magna dlaldiqa.
+                                </p>
 
-                        {/* now embed a javascript code again as below */}
-                        {
-                            book.isAvailable ? (
-                                ""
-                            ) : (
-                                <>
-                                    <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
-                                    <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
-                                </>
-                            )
-                        }
-                    </ContainerInlineTextAlignLeft>
-                    <ContainerInline>
-                        <img
-                            src={BookCoverPlaceholderImage}
-                            alt="Book Cover Placeholder"
-                            style={{border: "1px solid black", width: "250px", height: "300px"}}
-                        />
-                    </ContainerInline>
-                </FlexRow>
-                <FlexRow>
-                    {
-                        book.isAvailable ? (
-                            <>
-                                <Button onClick={()=>console.log("Call lend API")}> Lend </Button>
-                                <Button danger onClick={()=>console.log("Call deleteBook API")}> Delete </Button>
-                            </>
-                        ) : (
-                            <>
-                                <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
-                                <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
-                                <Button onClick={()=>console.log("Call Return API")}> Return </Button>
-                            </>
-                        )
-                    }                    
-                </FlexRow>
+                                {/* now embed a javascript code again as below */}
+                                {
+                                    book.isAvailable ? (
+                                        ""
+                                    ) : (
+                                        <>
+                                            <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
+                                            <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
+                                        </>
+                                    )
+                                }
+                            </ContainerInlineTextAlignLeft>
+                            <ContainerInline>
+                                <img
+                                    src={BookCoverPlaceholderImage}
+                                    alt="Book Cover Placeholder"
+                                    style={{border: "1px solid black", width: "250px", height: "300px"}}
+                                />
+                            </ContainerInline>
+                        </FlexRow>
+                        <FlexRow>
+                            {
+                                book.isAvailable ? (
+                                    <>
+                                        <Button onClick={()=>console.log("Call lend API")}> Lend </Button>
+                                        <Button color="danger" onClick={()=>setShowDeleteConfirmation(true)}> Delete </Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
+                                        <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
+                                        <Button onClick={()=>console.log("Call Return API")}> Return </Button>
+                                    </>
+                                )
+                            }                    
+                        </FlexRow>
+                        </>
+                    ) : (
+                        <Spinner />
+                    )
+                }
+            </Container>
+
+            <ConfirmationDialog 
+                handleClose={handleDelete}
+                show={showDeleteConfirmation}
+                headerText="Confirm book deletion"
+                detailText="Are you sure you want to delete this book? This action can't be undone."
+            />
         </>
-            ) : (
-                <Spinner />
-            )
-        }
-        </Container>
     );
 };
 
