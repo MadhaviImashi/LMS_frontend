@@ -5,7 +5,7 @@ import {IoReturnUpBack} from "react-icons/io5";
 import { Button, Container, ContainerInline, FlexRow } from '../../../components/CommonComponents';
 import Spinner from '../../../components/Spinner';
 
-import { getBook , lendBook} from '../../../api/bookAPI';
+import { getBook , lendBook, returnBook} from '../../../api/bookAPI';
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
@@ -31,6 +31,7 @@ const Book = ({id, handleBackClick}) => {
     const [book, setBook] = useState(null);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showLendDialog, setShowLendDialog] = useState(false);
+    const [showReturnBookConfirmation, setShowReturnBookConfirmation] = useState(false);
 
     const handleDelete = (confirmation) => {
         if(confirmation){
@@ -42,8 +43,17 @@ const Book = ({id, handleBackClick}) => {
     const handleLend = (confirmed, memberId) => {
         if(confirmed){
             lendBook(book.id, memberId, getTodaysDate()); //call the lendBook API
+            handleBackClick();
         }
         setShowLendDialog(false);
+    }
+
+    const handleReturnBook = (confirmation) => {
+        if(confirmation){
+            returnBook(book.id);
+            handleBackClick();
+        }
+        setShowReturnBookConfirmation(false);
     }
 
     useEffect(() => {
@@ -111,8 +121,8 @@ const Book = ({id, handleBackClick}) => {
                                 ) : (
                                     <>
                                         <h4>{`Burrowed by: ${book.burrowedMemberId}`}</h4>
-                                        <h4>{`Burrowed by: ${book.burrowedDate}`}</h4>
-                                        <Button onClick={()=>console.log("Call Return API")}> Return </Button>
+                                        <h4>{`Burrowed on: ${book.burrowedDate}`}</h4>
+                                        <Button onClick={()=>setShowReturnBookConfirmation(true)}> Return </Button>
                                     </>
                                 )
                             }                    
@@ -133,6 +143,12 @@ const Book = ({id, handleBackClick}) => {
             <LendDialog
                 handleClose={handleLend}
                 show={showLendDialog}
+            />
+            <ConfirmationDialog
+                handleClose={handleReturnBook}
+                show={showReturnBookConfirmation}
+                headerText="Confirm Returning book"
+                detailText="Are you sure that this book is returned by the burrowed member?"
             />
         </>
     );
