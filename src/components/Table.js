@@ -77,7 +77,7 @@ const TableMarkup = ({attributes , data, handleClick, caption}) => (
 
 //to export this TAbleMarckup structure as a table component
 const Table = ({data, handleRowClick, instruction}) => (
-    data ? <TableMarkup  
+    data.length > 0 ? <TableMarkup  
         attributes= {Object.keys(data[0])} 
         data= {data} 
         handleClick= {handleRowClick}
