@@ -8,6 +8,7 @@ import Spinner from '../../../components/Spinner';
 import { getBook } from '../../../api/bookAPI';
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
+import LendDialog from "./LendDialog";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -28,6 +29,7 @@ const Book = ({id, handleBackClick}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState(null);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [showLendDialog, setShowLendDialog] = useState(false);
 
     const handleDelete = (confirmation) => {
         if(confirmation){
@@ -35,6 +37,13 @@ const Book = ({id, handleBackClick}) => {
         }
         setShowDeleteConfirmation(false);//hide the modal anyway after confirmed or cancel the deletion
     };
+
+    const handleLend = (confirmed, member) => {
+        if(confirmed){
+            console.log("book lended to "+ member);
+        }
+        setShowLendDialog(false);
+    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -95,7 +104,7 @@ const Book = ({id, handleBackClick}) => {
                             {
                                 book.isAvailable ? (
                                     <>
-                                        <Button onClick={()=>console.log("Call lend API")}> Lend </Button>
+                                        <Button onClick={()=>setShowLendDialog(true)}> Lend </Button>
                                         <Button color="danger" onClick={()=>setShowDeleteConfirmation(true)}> Delete </Button>
                                     </>
                                 ) : (
@@ -119,6 +128,10 @@ const Book = ({id, handleBackClick}) => {
                 show={showDeleteConfirmation}
                 headerText="Confirm book deletion"
                 detailText="Are you sure you want to delete this book? This action can't be undone."
+            />
+            <LendDialog
+                handleClose={handleLend}
+                show={showLendDialog}
             />
         </>
     );
