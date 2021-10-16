@@ -12,8 +12,8 @@ import { getMembers } from "../../api/memberAPI";
 //The tabs components will be used here
 import Tabs from "../../components/Tabs";
 import Spinner from "../../components/Spinner";
-import { Books } from "./Books";
-import { Members } from "./Members";
+import { Books } from "./Books/Books.js";
+import { Members } from "./Members/Members.js";
 
 const Dashboard = () => { //why we create Dashboard as an arrow function??
 

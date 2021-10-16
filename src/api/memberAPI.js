@@ -7,3 +7,4 @@ import { getRequest } from "./util";
 const BASE_URL = "/member";
 
 export const getMembers = () => getRequest(`${BASE_URL}`);
+export const getMember = (id) => getRequest(`${BASE_URL}/${id}`);

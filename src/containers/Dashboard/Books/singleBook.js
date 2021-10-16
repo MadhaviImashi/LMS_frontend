@@ -2,11 +2,11 @@ import styled from "styled-components";
 import React, {useState, useEffect} from 'react';
 import {IoReturnUpBack} from "react-icons/io5";
 
-import { Button, Container, ContainerInline, FlexRow } from '../../components/CommonComponents';
-import Spinner from '../../components/Spinner';
+import { Button, Container, ContainerInline, FlexRow } from '../../../components/CommonComponents';
+import Spinner from '../../../components/Spinner';
 
-import { getBook } from '../../api/bookAPI';
-import BookCoverPlaceholderImage from "../../shared/book_image.jpg";
+import { getBook } from '../../../api/bookAPI';
+import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -77,7 +77,7 @@ const Book = ({id, handleBackClick}) => {
                         <img
                             src={BookCoverPlaceholderImage}
                             alt="Book Cover Placeholder"
-                            style={{border: "1px solid black", width: "250px", height: "300px"}}
+                            style={{border: "1px solid black", width: "250px", height: "300px", border: "0px"}}
                         />
                     </ContainerInline>
                 </FlexRow>
