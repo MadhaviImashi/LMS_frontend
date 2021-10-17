@@ -80,8 +80,8 @@ const Table = ({data, handleRowClick, instruction}) => (
     data.length > 0 ? <TableMarkup  
         attributes= {Object.keys(data[0])} 
         data= {data} 
-        handleClick= {handleRowClick}
-        caption= {instruction} /> 
+        handleClick= {handleRowClick ? handleRowClick : ()=>{console.log("row is not clicked")}}
+        caption= {instruction ? instruction : ""} /> 
     : "No data to populate"
 );
 //'data' is passed as a prop to this TableMarkup component
