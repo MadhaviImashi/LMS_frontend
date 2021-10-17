@@ -74,7 +74,7 @@ const Book = ({id, handleBackClick}) => {
             .finally(() => {
                 setIsLoading(false);
             })
-    }, [id]);
+    }, [id, book.burrowedMemberId]);
 
     const getMemberName = (burrowedMemberId) =>{
         getMember(burrowedMemberId)
@@ -111,7 +111,10 @@ const Book = ({id, handleBackClick}) => {
                                         ""
                                     ) : (
                                         <>
-                                            <h4>{`Borrowed by: ${member.Name} ( memberID: ${book.burrowedMemberId} )`}</h4>
+                                            <div>
+                                                <h4>{`Borrowed by: ${member.Name}`}</h4>
+                                                <span>{`( memberID: ${book.burrowedMemberId} )`}</span>
+                                            </div>
                                             <h4>{`Borrowed on: ${book.burrowedDate}`}</h4>
                                         </>
                                     )
