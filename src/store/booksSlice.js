@@ -31,6 +31,13 @@ export const bookSlice = createSlice({
           state.value = updatedBooks;
       },
 
+      deleteBook: (state, action) => {
+          const id = action.payload.id;
+          const updatedBooks = [...state.value];
+          const index = updatedBooks.findIndex((element) => element.id === id);
+          updatedBooks.splice(index, 1);
+          state.value = updatedBooks;
+      },
   },
 });
 

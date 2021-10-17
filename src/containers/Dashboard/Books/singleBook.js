@@ -9,6 +9,7 @@ import Spinner from "../../../components/Spinner";
 import {getBook, lendBook, returnBook, deleteBook,} from "../../../api/bookAPI";
 
 import { updateBook } from "../../../store/booksSlice";
+import { deleteBook as deleteBookStore } from "../../../store/booksSlice";
 
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
@@ -44,7 +45,20 @@ const Book = ({ id, handleBackClick }) => {
 
   const handleDelete = (confirmation) => {
     if (confirmation) {
-      deleteBook(book.id);
+      deleteBook(book.id)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(deleteBookStore(response.data));
+            handleBackClick();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setShowDeleteConfirmation(false); //hide the modal anyway after confirmed or cancel the deletion
   };
