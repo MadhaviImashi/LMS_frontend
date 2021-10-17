@@ -12,7 +12,7 @@ const StyledInput = styled.input`
     border: 2px solid ${(props) => props.theme.primary.main};
     border-radius: 3px;
     margin-bottom: 0.5em;
-    width: 100$;
+    width: 100%;
     box-sizing: border-box;
 `;
 

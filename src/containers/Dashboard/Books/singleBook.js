@@ -11,6 +11,7 @@ import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
 import { getTodaysDate } from "../../../shared/uitility_functions";
 import { getMember } from "../../../api/memberAPI";
+import AddEditBookDialog from "./AddEditBookDialog";
 
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
@@ -34,6 +35,7 @@ const Book = ({id, handleBackClick}) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showLendDialog, setShowLendDialog] = useState(false);
     const [showReturnBookConfirmation, setShowReturnBookConfirmation] = useState(false);
+    const [showEditBookDialog, setShowEditBookDialog] = useState(false);
 
     const handleDelete = (confirmation) => {
         if(confirmation){
@@ -48,6 +50,13 @@ const Book = ({id, handleBackClick}) => {
             handleBackClick();
         }
         setShowLendDialog(false);
+    }
+
+    const handleEditBook = (confirmed, data) => {
+        if(confirmed) {
+            console.log("confirmed edit");
+        }
+        setShowEditBookDialog(false);
     }
 
     const handleReturnBook = (confirmation) => {
@@ -74,7 +83,7 @@ const Book = ({id, handleBackClick}) => {
             .finally(() => {
                 setIsLoading(false);
             })
-    }, [id, book.burrowedMemberId]);
+    }, [id]);
 
     const getMemberName = (burrowedMemberId) =>{
         getMember(burrowedMemberId)
@@ -133,6 +142,7 @@ const Book = ({id, handleBackClick}) => {
                                 book.isAvailable ? (
                                     <>
                                         <Button onClick={()=>setShowLendDialog(true)}> Lend </Button>
+                                        <Button onClick={()=>setShowEditBookDialog(true)}> Edit </Button>
                                         <Button color="danger" onClick={()=>setShowDeleteConfirmation(true)}> Delete </Button>
                                     </>
                                 ) : (
@@ -164,6 +174,14 @@ const Book = ({id, handleBackClick}) => {
                 show={showReturnBookConfirmation}
                 headerText="Confirm Returning book"
                 detailText="Press 'Yes' to confirm return"
+            />
+            <AddEditBookDialog
+                isEdit={true}
+                data={book}
+                handleClose={handleEditBook}
+                show={showEditBookDialog}
+                headerText="Edit Book details"
+                detailText="Edit below details and press 'Yes' to confirm update"
             />
         </>
     );

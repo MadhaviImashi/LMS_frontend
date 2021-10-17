@@ -3,9 +3,9 @@ import { Button, Container, FlexRow } from "../../../components/CommonComponents
 import Input from "../../../components/input";
 import { DialogBox, Modal } from "../../../components/Modal";
 
-export default function AddBookDialog({ handleClose, show}) {
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
+export default function AddEditBookDialog({ isEdit= false, data, handleClose, show, headerText, detailText}) {
+    const [title, setTitle] = useState(isEdit && data && data.title ? data.title : "");
+    const [author, setAuthor] = useState(isEdit && data && data.author ? data.author : "");
 
     const clearInputs = () => {
         setTitle("")
@@ -17,22 +17,22 @@ export default function AddBookDialog({ handleClose, show}) {
             handleClose(true, { title, author });
             clearInputs();
         }else if (title === "" ) {
-            window.alert ("please enter a title to add the book");
+            window.alert (`please enter a title to ${isEdit ? "edit." : "add."}`);
         }else {
-            window.alert("please enter the author of the book to add.");
+            window.alert(`please enter the author of the book to ${isEdit ? "edit." : "add."}`);
         }
     };
 
     const sendCancel = () => {
-        clearInputs();
+        !isEdit && clearInputs(); //inputs will be cleared only if it is not the edit dialog
         handleClose( false, null);
     };
 
     return (
         <Modal show={show}>
             <DialogBox>
-                <h2>Add book</h2>
-                <p> Enter the below details of the book</p>
+                <h2>{headerText}</h2>
+                <p> {detailText}</p>
 
                 <Container alignItems = "center" disableFullWidth>
 

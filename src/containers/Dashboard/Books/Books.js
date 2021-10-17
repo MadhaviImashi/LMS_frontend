@@ -3,7 +3,7 @@ import Table from "../../../components/Table";
 import { Button, Container, FluidContainer } from "../../../components/CommonComponents";
 import Book from "./singleBook";
 import { IoAddSharp } from "react-icons/io5";
-import AddBookDialog from "./AddBookDialog";
+import AddEditBookDialog from "./AddEditBookDialog";
 import { addBook } from "../../../api/bookAPI";
 
 
@@ -67,9 +67,11 @@ export const Books = ({booksCatalog}) => {
 
                 </FluidContainer>
 
-                <AddBookDialog 
+                <AddEditBookDialog 
                     handleClose = {handleAddBook}
                     show = {showAddBookDialog}
+                    headerText = "Add New Book"
+                    detailText = "Enter below details to add."
                 />
         </>
         )   :  (
