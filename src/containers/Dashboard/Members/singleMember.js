@@ -55,13 +55,18 @@ const Member = ({id, handleBackClick}) => {
                     <ContainerInlineTextAlignLeft>
                         <H1>{`${member.Name}`}</H1>
                         <H2>{`Phone:  ${member.Phone}`}</H2>
+                        <p>
+                            Lorem ipsum dolr sit amet, consectetur adipisicing
+                            elit, sed do eiusomod tempor incideontk ut kaldbodkr et
+                            dorlore magna dlaldiqa.
+                        </p>
 
                     </ContainerInlineTextAlignLeft>
                     <ContainerInline>
                         <img
                             src={MemberCoverImagePlaceholder}
                             alt="Book Cover Placeholder"
-                            style={{ width: "220px", height: "230px"}}
+                            style={{border: "1px solid black", width: "220px", height: "235px"}}
                         />
                     </ContainerInline>
                 </FlexRow>
