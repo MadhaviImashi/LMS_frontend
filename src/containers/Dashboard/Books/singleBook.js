@@ -163,7 +163,7 @@ const Book = ({id, handleBackClick}) => {
                 handleClose={handleReturnBook}
                 show={showReturnBookConfirmation}
                 headerText="Confirm Returning book"
-                detailText="Are you sure that this book is returned by the burrowed member?"
+                detailText="Press 'Yes' to confirm return"
             />
         </>
     );
