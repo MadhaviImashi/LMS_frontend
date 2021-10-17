@@ -90,8 +90,22 @@ const Book = ({ id, handleBackClick }) => {
 
   const handleReturnBook = (confirmation) => {
     if (confirmation) {
-      returnBook(book.id);
-      handleBackClick();
+      setIsLoading(true);
+
+      returnBook(book.id)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(updateBook(response.data));
+            handleBackClick();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setShowReturnBookConfirmation(false);
   };
