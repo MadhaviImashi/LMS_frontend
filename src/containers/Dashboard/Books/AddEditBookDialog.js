@@ -3,8 +3,9 @@ import { Button, Container, FlexRow } from "../../../components/CommonComponents
 import Input from "../../../components/input";
 import { DialogBox, Modal } from "../../../components/Modal";
 
-export default function AddEditBookDialog({ isEdit= false, data, handleClose, show, headerText, detailText}) {
-    const [title, setTitle] = useState(isEdit && data && data.title ? data.title : "");
+export default function AddEditBookDialog({ isEdit, data, handleClose, show, headerText, detailText}) {
+
+    const [title, setTitle] = useState(isEdit && data ? data.title : "");
     const [author, setAuthor] = useState(isEdit && data && data.author ? data.author : "");
 
     const clearInputs = () => {
@@ -45,7 +46,7 @@ export default function AddEditBookDialog({ isEdit= false, data, handleClose, sh
 
                 <FlexRow>
                     <Button onClick={sendDone}>Done</Button>
-                    <Button onClick={sendCancel} color="secondary"> Cancel </Button>
+                    <Button onClick={sendCancel} color="secondary">Cancel</Button>
                 </FlexRow>
 
             </DialogBox>

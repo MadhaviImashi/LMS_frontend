@@ -3,20 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { IoReturnUpBack } from "react-icons/io5";
 
-import {
-  Button,
-  Container,
-  ContainerInline,
-  FlexRow,
-} from "../../../components/CommonComponents";
+import {Button, Container, ContainerInline, FlexRow,} from "../../../components/CommonComponents";
 import Spinner from "../../../components/Spinner";
 
-import {
-  getBook,
-  lendBook,
-  returnBook,
-  deleteBook,
-} from "../../../api/bookAPI";
+import {getBook, lendBook, returnBook, deleteBook,} from "../../../api/bookAPI";
 
 import { updateBook } from "../../../store/booksSlice";
 
@@ -47,8 +37,7 @@ const Book = ({ id, handleBackClick }) => {
   //const [member, setMember] = useState([]);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showLendDialog, setShowLendDialog] = useState(false);
-  const [showReturnBookConfirmation, setShowReturnBookConfirmation] =
-    useState(false);
+  const [showReturnBookConfirmation, setShowReturnBookConfirmation] = useState(false);
   const [showEditBookDialog, setShowEditBookDialog] = useState(false);
 
   const dispatch = useDispatch();
@@ -69,6 +58,7 @@ const Book = ({ id, handleBackClick }) => {
           if (!response.error) {
             console.log(response.data);
             dispatch(updateBook(response.data));
+            handleBackClick();
           }
         })
         .catch((error) => {
@@ -186,21 +176,12 @@ const Book = ({ id, handleBackClick }) => {
               {book.isAvailable ? (
                 <>
                   <Button onClick={() => setShowLendDialog(true)}>Lend</Button>
-                  <Button onClick={() => setShowEditBookDialog(true)}>
-                    Edit
-                  </Button>
-                  <Button
-                    color="danger"
-                    onClick={() => setShowDeleteConfirmation(true)}
-                  >
-                    Delete
-                  </Button>
+                  <Button onClick={() => setShowEditBookDialog(true)}>Edit</Button>
+                  <Button color="danger" onClick={() => setShowDeleteConfirmation(true)}> Delete</Button>
                 </>
               ) : (
                 <>
-                  <Button onClick={() => setShowReturnBookConfirmation(true)}>
-                    Return
-                  </Button>
+                  <Button onClick={() => setShowReturnBookConfirmation(true)}> Return</Button>
                 </>
               )}
             </FlexRow>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBook as  addBookStore} from "../../../store/booksSlice";
 import Table from "../../../components/Table";
 import { Button, Container, FluidContainer } from "../../../components/CommonComponents";
 import Book from "./singleBook";
 import { IoAddSharp } from "react-icons/io5";
 import AddEditBookDialog from "./AddEditBookDialog";
 import { addBook } from "../../../api/bookAPI";
-
 
 //pass a prop called bookCatalog to this function
 export const Books = ({booksCatalog}) => {
@@ -21,8 +22,11 @@ export const Books = ({booksCatalog}) => {
     //     },
     // ];
 
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedBookId, setSelectedBookId] = useState(null); //create a State to store the ID of the selected row book(initially it should be 'null')
     const [showAddBookDialog, setShowAddBookDialog] = useState(false);
+
+    const dispatch = useDispatch();
 
     const handleBookViewBackClick = () => {
         //when user click Back btn, there shouldn't be any selected row book. so make it null now using SetSelectedBookId() method
@@ -37,7 +41,20 @@ export const Books = ({booksCatalog}) => {
 
     const handleAddBook = (confirmed, data) => {
         if (confirmed) {
-            addBook(data);
+            setIsLoading(true);
+
+            addBook(data)
+                .then((response) => {
+                    if(!response.error) {
+                        dispatch(addBookStore(response.data));
+                    }
+                })
+                .catch((error) => {
+                console.log(error);
+                })
+                .finally(() => {
+                setIsLoading(false);
+                });
         }
         setShowAddBookDialog(false);
     }
