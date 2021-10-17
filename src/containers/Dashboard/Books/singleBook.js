@@ -5,7 +5,7 @@ import {IoReturnUpBack} from "react-icons/io5";
 import { Button, Container, ContainerInline, FlexRow } from '../../../components/CommonComponents';
 import Spinner from '../../../components/Spinner';
 
-import { getBook , lendBook, returnBook} from '../../../api/bookAPI';
+import { getBook , lendBook, returnBook, deleteBook} from '../../../api/bookAPI';
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import LendDialog from "./LendDialog";
@@ -37,7 +37,7 @@ const Book = ({id, handleBackClick}) => {
 
     const handleDelete = (confirmation) => {
         if(confirmation){
-            console.log("Delete confirmed");
+            deleteBook(book.id);
         }
         setShowDeleteConfirmation(false);//hide the modal anyway after confirmed or cancel the deletion
     };

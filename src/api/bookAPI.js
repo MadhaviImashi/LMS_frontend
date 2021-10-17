@@ -2,8 +2,7 @@
 //thses api calls will be used to communicate with our Backend
 
 //each api call(ex:getBooks) use a relevant http request function(ex:getRequest) to communicate with the backend.Therefor, import those request functions
-import { getRequest } from "./util";
-import { putRequest } from "./util";
+import { getRequest, putRequest, deleteRequest} from "./util";
 
 const BASE_URL = "/book";
 
@@ -16,3 +15,5 @@ export const lendBook = (id, burrowedMemberId, burrowedDate) => putRequest(`${BA
 //parameters of request body is also mentioned inside {}
 
 export const returnBook = (id) => putRequest(`${BASE_URL}/${id}/return`);
+
+export const deleteBook = (id) => deleteRequest(`${BASE_URL}/${id}`);

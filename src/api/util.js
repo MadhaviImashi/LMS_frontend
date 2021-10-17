@@ -37,3 +37,22 @@ export const putRequest = async (uri, data) => {
         };
     }
 }
+
+//delete book api function
+export const deleteRequest = async (uri) => {
+    try{
+        let response = await axios.delete(uri);
+
+        return {
+            data: response.data,
+            error: null
+        };
+    }catch(error) {
+        return {
+            data: null,
+            error: error
+        };
+    }
+}
+
+
