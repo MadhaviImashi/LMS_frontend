@@ -14,12 +14,17 @@ import AddEditMemberDialog from "./AddEditMemberDialog";
 //override a style component to style ContainerInline style component again
 const ContainerInlineTextAlignLeft = styled(ContainerInline)`
     align-items: flex-start;
+    margin-left: 40px;
+`;
+
+const FlexRowModified = styled(FlexRow)`
+    margin-left: 35px;
 `;
 
 const H1 = styled.h1`
     text-align: left;
 `;
-const H2 = styled.h2`
+const H3 = styled.h3`
     text-align: left;
 `;
 
@@ -96,23 +101,30 @@ const Member = ({id, handleBackClick}) => {
                 <FlexRow>
                     <ContainerInlineTextAlignLeft>
                         <H1>{`${member.firstName} ${member.lastName}`}</H1>
-                        <H2>{`Phone:  ${member.phone}`}</H2>
-                        <p>
-                            Lorem ipsum dolr sit amet, consectetur adipisicing
-                            elit, sed do eiusomod tempor incideontk ut kaldbodkr et
-                            dorlore magna dlaldiqa.
-                        </p>
+                        <H3>{`Contact Number: `}</H3><span>{`${member.phone}`}</span>
+                        <H3>{`Address: `}</H3><span>{`${member.address}`}</span>
+                        <H3>{`NIC: `}</H3><span>{`${member.nic}`}</span>
+                        <H3>{`User type: `}</H3><span>{`${member.userType}`}</span>
 
                     </ContainerInlineTextAlignLeft>
                     <ContainerInline>
+                        <>
                         <img
                             src={MemberCoverImagePlaceholder}
                             alt="Book Cover Placeholder"
                             style={{border: "1px solid black", width: "220px", height: "235px"}}
                         />
+                        <p>
+                            Lorem ipsum dolr sit amet,consectetur 
+                            adipisicing
+                            elit, sed doeiusomod tempor incideontkut 
+                            kaldbodkr et
+                            dorlore magna dlaldiqa.
+                        </p>
+                        </>
                     </ContainerInline>
                 </FlexRow>
-                <FlexRow>
+                <FlexRowModified>
                     {member.isAvailable ? (
                         <>
                         <Button onClick={() => setShowEditMemberDialog(true)}>Edit</Button>
@@ -122,7 +134,7 @@ const Member = ({id, handleBackClick}) => {
                         <>
                         </>
                     )}
-                </FlexRow>
+                </FlexRowModified>
                 </>
                     ) : (
                         <Spinner />

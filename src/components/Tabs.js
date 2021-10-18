@@ -6,8 +6,8 @@ const TabsContainer = styled.div`
     overflow: hidden;
     background: #fff;
     height: 100%;
-    max-width: 80%;
-    min-width: 80%;
+    max-width: 70%;
+    min-width: 70%;
     margin-top: 10px;
 `;
 //overflow: hidden - to show the content of the selected tab only(rest of the content will be hidden)
