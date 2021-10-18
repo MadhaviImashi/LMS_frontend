@@ -13,6 +13,7 @@ import { getMembers } from "../../api/memberAPI";
 
 //import actions of Redux bookSlice state(because we have to dispatch actions)
 import { setBooks } from "../../store/booksSlice";
+import { setMembers } from "../../store/membersSlice";
 
 //The tabs components will be used here
 import Tabs from "../../components/Tabs";
@@ -36,10 +37,11 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   //we can store the response data of get api call to this 'books' state object
   //const [books, setBooks] = useState([]);
-  const [members, setMembers] = useState([]);
+  //const [members, setMembers] = useState([]);
 
   //create the dispatch and the State using useDispatch(), useSelector()
   const booksFromRedux = useSelector((state) => state.books.value);
+  const MembersFromRedux = useSelector((state) => state.members.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const Dashboard = () => {
       //execute if axios promise is fullfilled
       .then((response) => {
         if (!response.error) {
-          setMembers(response.data);
+          dispatch(setMembers(response.data));
         }
       })
       //execute if promise has catched an error
@@ -81,7 +83,7 @@ const Dashboard = () => {
   //create a tab content component with all the content data in objects
   const tabContents = [
     { title: "Books", elements: <Books booksCatalog={booksFromRedux} /> }, //call Books component, send books data as a prop to the Books component
-    { title: "Members", elements: <Members membersCatalog={members} /> },
+    { title: "Members", elements: <Members membersCatalog={MembersFromRedux} /> },
   ];
 
   return (
