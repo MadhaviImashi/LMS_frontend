@@ -49,7 +49,6 @@ const Dashboard = () => {
       //execute if axios promise is fullfilled
       .then((response) => {
         if (!response.error) {
-          console.log(response.data);
           dispatch(setBooks(response.data)); //dispatch the setBooks action
         }
       })
@@ -66,7 +65,6 @@ const Dashboard = () => {
       //execute if axios promise is fullfilled
       .then((response) => {
         if (!response.error) {
-          console.log(response.data);
           setMembers(response.data);
         }
       })

@@ -51,7 +51,6 @@ const Book = ({ id, handleBackClick }) => {
       deleteBook(book.id)
         .then((response) => {
           if (!response.error) {
-            console.log(response.data);
             dispatch(deleteBookStore(response.data));
             handleBackClick();//this state update cannot happen in an unmounted component. so removed the setIsLoadin(false) part of this promise
           }
@@ -70,7 +69,6 @@ const Book = ({ id, handleBackClick }) => {
       lendBook(book.id, memberId, getTodaysDate())
         .then((response) => {
           if (!response.error) {
-            console.log(response.data);
             dispatch(updateBookStore(response.data));
           }
         })
@@ -89,7 +87,6 @@ const Book = ({ id, handleBackClick }) => {
         updateBook(book.id, data)
         .then((response) => {
           if (!response.error) {
-            console.log(response.data);
             dispatch(updateBookStore(response.data));
           }
         })
@@ -110,7 +107,6 @@ const Book = ({ id, handleBackClick }) => {
       returnBook(book.id)
         .then((response) => {
           if (!response.error) {
-            console.log(response.data);
             dispatch(updateBookStore(response.data));
           }
         })
