@@ -11,7 +11,7 @@
     git clone https://github.com/MadhaviImashi/LMS_frontend.git
     ```
 2. Open the project using a prefered IDE
-3. install the dependencies
+3. Install the dependencies
     ```
     npm install
     ```
