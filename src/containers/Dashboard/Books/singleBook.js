@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IoReturnUpBack } from "react-icons/io5";
 
 import {Button, Container, ContainerInline, FlexRow,} from "../../../components/CommonComponents";
 import Spinner from "../../../components/Spinner";
 
-import {getBook, lendBook, returnBook, deleteBook,} from "../../../api/bookAPI";
+import {lendBook, returnBook, deleteBook, updateBook} from "../../../api/bookAPI";
 
-import { updateBook } from "../../../store/booksSlice";
+import { updateBook as updateBookStore } from "../../../store/booksSlice";
 import { deleteBook as deleteBookStore } from "../../../store/booksSlice";
 
 import BookCoverPlaceholderImage from "../../../shared/book4_image.png";
@@ -34,17 +34,20 @@ const H2 = styled.h2`
 //instead of sending props directly, u can also destructure the prop into exact outcomes passed from the table when a book row is clicked as below
 const Book = ({ id, handleBackClick }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [book, setBook] = useState(null);
+  //const [book, setBook] = useState(null);
   //const [member, setMember] = useState([]);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showLendDialog, setShowLendDialog] = useState(false);
   const [showReturnBookConfirmation, setShowReturnBookConfirmation] = useState(false);
   const [showEditBookDialog, setShowEditBookDialog] = useState(false);
 
+  const booksFromRedux = useSelector((state) => state.books.value);
+  const book = booksFromRedux.find((element) => element.id === id);  
   const dispatch = useDispatch();
 
   const handleDelete = (confirmation) => {
     if (confirmation) {
+      setIsLoading(true);
       deleteBook(book.id)
         .then((response) => {
           if (!response.error) {
@@ -71,8 +74,7 @@ const Book = ({ id, handleBackClick }) => {
         .then((response) => {
           if (!response.error) {
             console.log(response.data);
-            dispatch(updateBook(response.data));
-            handleBackClick();
+            dispatch(updateBookStore(response.data));
           }
         })
         .catch((error) => {
@@ -87,7 +89,19 @@ const Book = ({ id, handleBackClick }) => {
 
   const handleEditBook = (confirmed, data) => {
     if (confirmed) {
-      console.log("confirmed edit");
+        updateBook(book.id, data)
+        .then((response) => {
+          if (!response.error) {
+            console.log(response.data);
+            dispatch(updateBookStore(response.data));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
     setShowEditBookDialog(false);
   };
@@ -100,8 +114,7 @@ const Book = ({ id, handleBackClick }) => {
         .then((response) => {
           if (!response.error) {
             console.log(response.data);
-            dispatch(updateBook(response.data));
-            handleBackClick();
+            dispatch(updateBookStore(response.data));
           }
         })
         .catch((error) => {
@@ -114,23 +127,23 @@ const Book = ({ id, handleBackClick }) => {
     setShowReturnBookConfirmation(false);
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    getBook(id)
-      .then((response) => {
-        if (!response.error) {
-          setBook(response.data);
-          //call the getMember() to load the member details belongs to book burrowed member using book.burowedMemberId
-          //getMemberName(book.burrowedMemberId);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   getBook(id)
+  //     .then((response) => {
+  //       if (!response.error) {
+  //         setBook(response.data);
+  //         //call the getMember() to load the member details belongs to book burrowed member using book.burowedMemberId
+  //         //getMemberName(book.burrowedMemberId);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }, [id]);
 
   // const getMemberName = (burrowedMemberId) =>{
   //     getMember(burrowedMemberId)

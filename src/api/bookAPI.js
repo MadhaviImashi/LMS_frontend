@@ -19,3 +19,5 @@ export const returnBook = (id) => putRequest(`${BASE_URL}/${id}/return`);
 export const deleteBook = (id) => deleteRequest(`${BASE_URL}/${id}`);
 
 export const addBook = (data) => postRequest(`${BASE_URL}`, data);
+
+export const updateBook = (id, data) => putRequest(`${BASE_URL}/${id}`, data);
