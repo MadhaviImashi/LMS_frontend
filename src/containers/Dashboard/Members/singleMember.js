@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {IoReturnUpBack} from "react-icons/io5";
 
 import { Button, Container, ContainerInline, FlexRow } from '../../../components/CommonComponents';
 import Spinner from '../../../components/Spinner';
 
-import { getMember, updateMember, deleteMember } from "../../../api/memberAPI";
+import {updateMember, deleteMember } from "../../../api/memberAPI";
 import MemberCoverImagePlaceholder from "../../../shared/member2_image.jpg";
+
+import { updateMember as updateMemberStore } from "../../../store/membersSlice";
+import { deleteMember as deleteMemberStore } from "../../../store/membersSlice";
 
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import AddEditMemberDialog from "./AddEditMemberDialog";
@@ -33,26 +37,31 @@ const H3 = styled.h3`
 const Member = ({id, handleBackClick}) => {
     
     const [isLoading, setIsLoading] = useState(false);
-    const [member, setMember] = useState(null);
+    //const [member, setMember] = useState(null);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showEditMemberDialog, setShowEditMemberDialog] = useState(false);
 
+    const membersFromRedux = useSelector((state) => state.members.value);
+    console.log("members from redux", membersFromRedux);
+    const member = membersFromRedux.find((element) => element.id === id);  
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        setIsLoading(true);
-        getMember(id)
-            .then((response) => {
-                if(!response.error) {
-                    setMember(response.data);
-                }
-            })
-            .catch((error)=>{
-                console.log(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
-    }, [id]);
+
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     getMember(id)
+    //         .then((response) => {
+    //             if(!response.error) {
+    //                 setMember(response.data);
+    //             }
+    //         })
+    //         .catch((error)=>{
+    //             console.log(error);
+    //         })
+    //         .finally(() => {
+    //             setIsLoading(false);
+    //         })
+    // }, [id]);
 
     const handleDelete = (confirmation) => {
         if (confirmation) {
@@ -60,7 +69,7 @@ const Member = ({id, handleBackClick}) => {
           deleteMember(member.id)
             .then((response) => {
               if (!response.error) {
-                console.log(response.data);
+                dispatch(deleteMemberStore(response.data));
                 handleBackClick();//this state update cannot happen in an unmounted component. so removed the setIsLoadin(false) part of this promise
               }
             })
@@ -76,7 +85,7 @@ const Member = ({id, handleBackClick}) => {
             updateMember(member.id, data)
             .then((response) => {
               if (!response.error) {
-                console.log(response.data);
+                dispatch(updateMemberStore(response.data));
               }
             })
             .catch((error) => {

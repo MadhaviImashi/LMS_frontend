@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addMember as addMemberStore } from "../../../store/membersSlice";
 import Table from "../../../components/Table";
 import { Button, Container, FluidContainer } from "../../../components/CommonComponents";
 import Member from "./singleMember";
@@ -12,6 +14,8 @@ export const Members = ({membersCatalog}) => {
     //create a State to store the ID of the selected row book(initially it should be 'null')
     const [selectedMemberId, setSelectedMemberId] = useState(null);
     const [showAddMemberDialog, setShowAddMemberDialog] = useState(false);
+
+    const dispatch = useDispatch();
 
 
     const handleMemberViewBackClick = () => {
@@ -29,7 +33,7 @@ export const Members = ({membersCatalog}) => {
             addMember(data)
                 .then((response) => {
                     if(!response.error) {
-                        console.log(response.data);
+                        dispatch(addMemberStore(response.data));
                     }
                 })
                 .catch((error) => {
