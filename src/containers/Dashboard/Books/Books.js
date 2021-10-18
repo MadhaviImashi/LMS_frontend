@@ -22,7 +22,6 @@ export const Books = ({booksCatalog}) => {
     //     },
     // ];
 
-    const [isLoading, setIsLoading] = useState(false);
     const [selectedBookId, setSelectedBookId] = useState(null); //create a State to store the ID of the selected row book(initially it should be 'null')
     const [showAddBookDialog, setShowAddBookDialog] = useState(false);
 
@@ -41,8 +40,6 @@ export const Books = ({booksCatalog}) => {
 
     const handleAddBook = (confirmed, data) => {
         if (confirmed) {
-            setIsLoading(true);
-
             addBook(data)
                 .then((response) => {
                     if(!response.error) {
@@ -52,9 +49,6 @@ export const Books = ({booksCatalog}) => {
                 .catch((error) => {
                 console.log(error);
                 })
-                .finally(() => {
-                setIsLoading(false);
-                });
         }
         setShowAddBookDialog(false);
     }
