@@ -233,7 +233,7 @@ const Book = ({ id, handleBackClick }) => {
         handleClose={handleEditBook}
         show={showEditBookDialog}
         headerText="Edit Book details"
-        detailText="Edit below details and press 'Yes' to confirm update"
+        detailText="Edit below details and press 'Done' to confirm update"
       />
     </>
   );

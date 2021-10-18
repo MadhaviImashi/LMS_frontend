@@ -163,7 +163,7 @@ const Member = ({id, handleBackClick}) => {
             handleClose={handleEditBook}
             show={showEditMemberDialog}
             headerText="Edit member details"
-            detailText="Edit below details and press 'Yes' to confirm update"
+            detailText="Edit below details and press 'Done' to confirm update"
       />
       </>
     );
