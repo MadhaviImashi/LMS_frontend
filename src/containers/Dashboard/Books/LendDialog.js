@@ -59,7 +59,7 @@ export default function LendDialog({ handleClose, show}){
                         >
                             <option value="">--Please select a member</option>
                             {members.map((member, index) => (
-                                <option key={index} value={member.id}> {member.Name} </option>
+                                <option key={index} value={member.id}> {`${member.firstName} ${member.lastName}`}</option>
                             ))}
                         </Select>
                         <FlexRow>
