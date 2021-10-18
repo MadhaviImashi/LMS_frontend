@@ -1,7 +1,15 @@
+import styled from "styled-components"
 import React, {useState} from "react";
-import { Button, Container, FlexRow } from "../../../components/CommonComponents";
+import { Button, Container, FlexRow, Select } from "../../../components/CommonComponents";
 import Input from "../../../components/input";
 import { DialogBox, Modal } from "../../../components/Modal";
+
+const Label = styled.label`
+    font-size: 0.75em;
+    margin-bottom: 0.5em;
+    display: block;
+    alignItems="flex-start"
+`;
 
 export default function AddEditBookDialog({ isEdit, data, handleClose, show, headerText, detailText}) {
 
@@ -72,8 +80,14 @@ export default function AddEditBookDialog({ isEdit, data, handleClose, show, hea
                     <Input label="Address" value={address} onChange={(e) => setAddress(e.target.value)} type="text" 
                     id="address" name="address" required minLenght="1" />
 
-                    <Input label="User Type" value={userType} onChange={(e) => setUserType(e.target.value)} type="text" 
-                    id="userType" name="userType" required minLenght="1" />
+                    <Container alignItems="flex-start">
+                        <Label for="userType" >User Type</Label>
+                        <Select label="User Type" id="userType" value={userType} onChange={(e) => setUserType(e.target.value)} borderColor changeWidth marginLeft>
+                            <option value="School">School</option>
+                            <option value="University">University</option>
+                            <option value="Employed">Employed</option>
+                        </Select>
+                    </Container>
                 </Container>
 
                 <FlexRow>

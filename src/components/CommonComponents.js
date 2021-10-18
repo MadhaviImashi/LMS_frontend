@@ -74,9 +74,10 @@ export const Select = styled.select`
     color: gray;
     ppadding: 0.5em;
     font-size: 0.8em;
-    border: 2px solid ${(props) => props.theme.secondary.light};
+    border: 2px solid ${(props) => props.borderColor ? props.theme.primary.main : props.theme.secondary.light};
     border-radius: 0.5em;
-    margin-left: 1em;
+    margin-left: ${(props) => props.marginLeft ? "" : "1em"};
+    width: ${(props) => props.changeWidth ? "100%" : "400px"};
     option {
         color: black;
         background: white;
