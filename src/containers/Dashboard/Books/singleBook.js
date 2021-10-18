@@ -43,6 +43,9 @@ const Book = ({ id, handleBackClick }) => {
 
   const booksFromRedux = useSelector((state) => state.books.value);
   const book = booksFromRedux.find((element) => element.id === id);  
+
+  const membersFromRedux = useSelector((state) => state.members.value);
+  const burrowedMember = membersFromRedux.find((element) => element.id === book.burrowedMemberId);
   const dispatch = useDispatch();
 
   const handleDelete = (confirmation) => {
@@ -173,7 +176,7 @@ const Book = ({ id, handleBackClick }) => {
                 ) : (
                   <>
                     <div>
-                      {/* <h4>{`Borrowed by: ${member.Name}`}</h4> */}
+                      <h4>{`Borrowed by: ${burrowedMember.firstName} ${burrowedMember.lastName}`}</h4>
                       <span>{`( memberID: ${book.burrowedMemberId} )`}</span>
                     </div>
                     <h4>{`Borrowed on: ${book.burrowedDate}`}</h4>

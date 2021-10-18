@@ -42,7 +42,6 @@ const Member = ({id, handleBackClick}) => {
     const [showEditMemberDialog, setShowEditMemberDialog] = useState(false);
 
     const membersFromRedux = useSelector((state) => state.members.value);
-    console.log("members from redux", membersFromRedux);
     const member = membersFromRedux.find((element) => element.id === id);  
     const dispatch = useDispatch();
 
