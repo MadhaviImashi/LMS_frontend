@@ -25,3 +25,31 @@ The page will reload if you make edits.\
 
 
 ## An overview of the application
+
+<div align="center">
+    <h3> Interfaces related to Book management function </h3>
+  <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book1.PNG" alt="Madhavi's Header section" width="600" height="320">
+  <br>
+   <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book2.PNG" alt="Madhavi's Header section" width="600" height="320">
+   <br>
+      <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book3.PNG" alt="Madhavi's Header section" width="600" height="320">
+  <br>
+   <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book4.PNG" alt="Madhavi's Header section" width="600" height="320">
+   <br>
+      <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book5.PNG" alt="Madhavi's Header section" width="600" height="320">
+  <br>
+   <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/book6.PNG" alt="Madhavi's Header section" width="600" height="320">
+   <br><br>
+    <h3> Interfaces related to Member management function </h3>
+      <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/member1.PNG" alt="Madhavi's Header section" width="620" height="320">
+  <br>
+   <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/member2.PNG" alt="Madhavi's Header section" width="620" height="320">
+   <br>
+       <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/member3.PNG" alt="Madhavi's Header section" width="620" height="320">
+   <br><br>
+      <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/member4.PNG" alt="Madhavi's Header section" width="620" height="320">
+  <br>
+   <img src="https://github.com/MadhaviImashi/LMS_frontend/blob/main/public/Demo_images/member5.PNG" alt="Madhavi's Header section" width="620" height="320">
+   <br>
+ </div>
+
