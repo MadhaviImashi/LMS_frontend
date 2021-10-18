@@ -45,7 +45,7 @@ const Book = ({ id, handleBackClick }) => {
   const book = booksFromRedux.find((element) => element.id === id);  
 
   const membersFromRedux = useSelector((state) => state.members.value);
-  const burrowedMember = membersFromRedux.find((element) => element.id === book.burrowedMemberId);
+  const burrowedMember = book ? ( membersFromRedux.find((element) => element.id === book.burrowedMemberId)) : (membersFromRedux);
   const dispatch = useDispatch();
 
   const handleDelete = (confirmation) => {
