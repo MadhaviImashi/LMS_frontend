@@ -1,6 +1,6 @@
 <h4 align="center"> FrontEnd - Library Management System </h4>
 
-<p align="center"> <a href="https://reactjs.org/" target="_blank"><img src="http://blog.addthiscdn.com/wp-content/uploads/2014/11/addthis-react-flux-javascript-scaling.png" width="300"></a> <br><span>(Framework used: <a href="https://reactjs.org/" target="_blank"><b>React</b>)</a></p>
+<p align="center"> <span>(Framework used: <a href="https://reactjs.org/" target="_blank"><b>React</b>)</a></p>
 
 ## To run the application
 
