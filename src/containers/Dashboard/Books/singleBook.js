@@ -53,15 +53,12 @@ const Book = ({ id, handleBackClick }) => {
           if (!response.error) {
             console.log(response.data);
             dispatch(deleteBookStore(response.data));
-            handleBackClick();
+            handleBackClick();//this state update cannot happen in an unmounted component. so removed the setIsLoadin(false) part of this promise
           }
         })
         .catch((error) => {
           console.log(error);
         })
-        .finally(() => {
-          setIsLoading(false);
-        });
     }
     setShowDeleteConfirmation(false); //hide the modal anyway after confirmed or cancel the deletion
   };
