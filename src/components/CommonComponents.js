@@ -1,4 +1,4 @@
-import styled from "styled-components"; //import styled-components
+import styled from "styled-components"; //styled-components
 
 export const FluidContainer = styled.div`
     display: flex;
